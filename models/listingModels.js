@@ -58,39 +58,39 @@ const listingSchema = new mongoose.Schema({
     //   },
     // },
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId, // foreign key
-    ref: 'User', // reference the user Model
-  },
-  reservation: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Reservation',
-  },
+  // userId: {
+  //   type: mongoose.Schema.Types.ObjectId, // foreign key
+  //   ref: 'User', // reference the user Model
+  // },
+  // reservation: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Reservation',
+  // },
 });
-
 const Listing = mongoose.model('Listing', listingSchema);
-// create a testing document(object) out of the model
-const testListing = new Listing({
-  title: 'Modern Downtown Apartment2',
-  description: 'Stylish apartment in the heart of the city.',
-  imagSrc: 'path/to/image1.jpg',
-  category: 'Apartment',
-  roomCount: 2,
-  bathroomCount: 1,
-  guestCount: 3,
-  locationValue: 'City Center',
-  price: 1500,
-  priceDiscount: 0,
-  userId: '611f76e2f5aebc001c89b1d0',
-  reservation: '6123d556b8a71e001c7e268a',
-});
 
-testListing
-  .save()
-  .then((doc) => {
-    console.log(doc);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// one way of creating document and save doc to collection without the http request routes
+// // create a testing document(object) out of the model
+// const testListing = new Listing( {
+//   "title": "Luxury Beachfront Villa3",
+//   "description": "Elegant villa overlooking the ocean",
+//   "imagSrc": "path/to/image4.jpg",
+//   "category": "Villa",
+//   "roomCount": 5,
+//   "bathroomCount": 4,
+//   "guestCount": 10,
+//   "locationValue": "Coastal Paradise",
+//   "price": 4000,
+//   "priceDiscount": 200
+// });
+// console.log(mongoose.version)
+
+// testListing
+//   .save()
+//   .then((doc) => {
+//     console.log(doc);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 module.exports = Listing;
