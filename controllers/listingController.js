@@ -1,10 +1,17 @@
 // import the listing model object
 const Listing = require('./../models/listingModels');
-
 exports.getAllListings = async (req, res) => {
-  //console.log(res.JSON());
-  const listings = await Listing.find();
   try {
+    // excluded the non valid query fields
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    // The delete operator removes a property from an object.
+    excludedFields.forEach((el) => delete queryObj[el]);
+    console.log(req.query, queryObj);
+
+    //const listings = await Listing.find();
+    const middleQuery = Listing.find();
+    const listings = await middleQuery;
     res.status(200).json({
       status: 'success',
       data: listings,
